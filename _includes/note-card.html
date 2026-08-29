@@ -1,0 +1,19 @@
+{% assign note = include.note %}
+<article class="note-card">
+  <div class="note-card__meta">
+    <time datetime="{{ note.date | date_to_xmlschema }}">{{ note.date | date: '%Y-%m-%d' }}</time>
+    {% if note.category %}
+      <a href="{{ '/knowledge/categories/' | relative_url }}#{{ note.category | slugify }}">{{ note.category }}</a>
+    {% endif %}
+  </div>
+  <h3><a href="{{ note.url | relative_url }}">{{ note.title }}</a></h3>
+  {% if note.summary %}<p>{{ note.summary }}</p>{% endif %}
+  {% if note.tags %}
+    <ul class="tag-list" aria-label="Tags">
+      {% for tag in note.tags limit: 4 %}
+        <li><a href="{{ '/knowledge/tags/' | relative_url }}#{{ tag | slugify }}">{{ tag }}</a></li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</article>
+

@@ -1,6 +1,9 @@
 ---
 title: "利用Python的HFSS调优 - PyAEDT与PSO算法结合实践"
 date: 2025-01-15
+layout: redirect
+redirect_to: /knowledge/pyaedt-hfss-automation-basics/
+sitemap: false
 categories: [技术实践]
 tags: [Python, HFSS, PyAEDT, PSO, 优化算法]
 excerpt: "分享使用PyAEDT结合PSO算法实现HFSS自动调优的实践经验，包括基础实现和优化效果评估思路。"

@@ -1,0 +1,28 @@
+- category: 电磁与射频
+  items:
+    - 天线设计与优化
+    - 电磁场与微波技术
+    - 射频系统分析
+    - 参数化电磁仿真
+
+- category: 仿真与工程工具
+  items:
+    - Ansys HFSS
+    - PyAEDT
+    - ADS
+    - MATLAB
+
+- category: 编程与数据
+  items:
+    - Python
+    - NumPy / SciPy
+    - Matplotlib
+    - Git
+
+- category: 优化与机器学习
+  items:
+    - 粒子群优化（PSO）
+    - 遗传算法（GA）
+    - 机器学习基础
+    - 工程优化工作流
+

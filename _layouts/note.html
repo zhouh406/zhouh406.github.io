@@ -1,0 +1,73 @@
+---
+layout: default
+---
+{% assign notes = site.knowledge | sort: 'date' | reverse %}
+{% assign current_index = 0 %}
+{% for note in notes %}{% if note.url == page.url %}{% assign current_index = forloop.index0 %}{% endif %}{% endfor %}
+{% assign newer_index = current_index | minus: 1 %}
+{% assign older_index = current_index | plus: 1 %}
+
+<div class="shell detail-shell note-shell">
+  <a class="back-link" href="{{ '/knowledge/' | relative_url }}"><span aria-hidden="true">←</span> Knowledge</a>
+  <header class="detail-header note-header">
+    <div class="detail-header__main">
+      <div class="note-meta">
+        <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%Y-%m-%d' }}</time>
+        {% if page.category %}<a href="{{ '/knowledge/categories/' | relative_url }}#{{ page.category | slugify }}">{{ page.category }}</a>{% endif %}
+      </div>
+      <h1>{{ page.title }}</h1>
+      <p class="page-lead">{{ page.summary }}</p>
+      {% if page.tags %}
+        <ul class="tag-list" aria-label="Tags">{% for tag in page.tags %}<li><a href="{{ '/knowledge/tags/' | relative_url }}#{{ tag | slugify }}">{{ tag }}</a></li>{% endfor %}</ul>
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="reading-grid">
+    <article class="prose note-content">{{ content }}</article>
+    {% unless page.toc == false %}
+      <aside class="toc" id="table-of-contents" hidden>
+        <p>On this page</p>
+        <ol></ol>
+      </aside>
+    {% endunless %}
+  </div>
+
+  {% if page.related_notes or page.related_projects %}
+    <section class="related-content" aria-labelledby="related-title">
+      <h2 id="related-title">Continue Exploring</h2>
+      <div class="related-grid">
+        {% if page.related_notes %}
+          <div><h3>Related Notes</h3><ul class="link-list">
+            {% for note_slug in page.related_notes %}
+              {% assign related_note = site.knowledge | where: 'slug', note_slug | first %}
+              {% if related_note %}<li><a href="{{ related_note.url | relative_url }}">{{ related_note.title }}</a></li>{% endif %}
+            {% endfor %}
+          </ul></div>
+        {% endif %}
+        {% if page.related_projects %}
+          <div><h3>Related Projects</h3><ul class="link-list">
+            {% for project_slug in page.related_projects %}
+              {% assign related_project = site.projects | where: 'slug', project_slug | first %}
+              {% if related_project %}<li><a href="{{ related_project.url | relative_url }}">{{ related_project.title }}</a></li>{% endif %}
+            {% endfor %}
+          </ul></div>
+        {% endif %}
+      </div>
+    </section>
+  {% endif %}
+
+  {% if notes.size > 1 %}
+    <nav class="note-pagination" aria-label="Previous and next notes">
+      {% if current_index > 0 %}
+        {% assign newer_note = notes[newer_index] %}
+        <a href="{{ newer_note.url | relative_url }}"><span>Newer note</span><strong>{{ newer_note.title }}</strong></a>
+      {% else %}<span></span>{% endif %}
+      {% if older_index < notes.size %}
+        {% assign older_note = notes[older_index] %}
+        <a href="{{ older_note.url | relative_url }}"><span>Older note</span><strong>{{ older_note.title }}</strong></a>
+      {% endif %}
+    </nav>
+  {% endif %}
+</div>
+

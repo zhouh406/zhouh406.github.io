@@ -1,0 +1,11 @@
+<footer class="site-footer">
+  <div class="shell site-footer__inner">
+    <p>© {{ 'now' | date: '%Y' }} {{ site.data.profile.name }}. Built with Jekyll and Markdown.</p>
+    <div class="site-footer__links">
+      <a href="{{ site.data.profile.contact.github_url }}" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="mailto:{{ site.data.profile.contact.email }}">Email</a>
+      <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
+    </div>
+  </div>
+</footer>
+

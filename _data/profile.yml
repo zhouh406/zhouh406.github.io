@@ -1,0 +1,38 @@
+name: zchhaa
+role: 通信工程硕士研究生
+tagline: AI algorithms × antenna design × engineering automation
+intro: >-
+  我关注天线、射频与电磁仿真，并探索优化算法和机器学习在工程设计流程中的实际应用。
+  这个网站用于展示项目，也作为持续更新的公开知识库。
+focus: >-
+  当前重点是通过 HFSS、PyAEDT 与智能优化方法，提高电磁设计、参数扫描和结果评估的效率。
+
+research_interests:
+  - Antennas
+  - RF Systems
+  - Electromagnetic Simulation
+  - HFSS / PyAEDT
+  - AI for Electromagnetic Design
+  - Engineering Automation
+
+education:
+  - degree: 通信工程硕士研究生
+    institution: 中山大学
+    detail: 研究方向聚焦智能优化算法与天线、电磁设计的交叉应用。
+
+timeline:
+  - period: 当前
+    title: AI + 电磁设计研究
+    detail: 探索粒子群算法、机器学习与工程仿真自动化的结合。
+  - period: 持续进行
+    title: HFSS / PyAEDT 工具链实践
+    detail: 将参数化建模、批量仿真、结果提取与优化流程连接起来。
+  - period: 长期
+    title: 公开知识库建设
+    detail: 整理天线、射频、电磁仿真与 Python 工程实践笔记。
+
+contact:
+  email: zhouh268@mail2.sysu.edu.cn
+  github_label: zhouh406
+  github_url: https://github.com/zhouh406
+

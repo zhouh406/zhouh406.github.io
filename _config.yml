@@ -1,54 +1,57 @@
-# 站点基础信息
-title: zchhaa | 通信与AI交叉研究
-description: 通信领域硕士研究生，专注于粒子群算法、天线设计、射频技术的交叉研究与应用
+# Site identity
+title: zchhaa | AI × Electromagnetics
+description: 通信工程硕士研究生的个人主页，记录天线、射频、电磁仿真、HFSS / PyAEDT 与 AI 辅助工程设计。
 url: "https://zhouh406.github.io"
 baseurl: ""
-author: zchhaa
-email: zhouh268@mail2.sysu.edu.cn
 lang: zh-CN
+timezone: Asia/Shanghai
 
-# 主题与扩展
-remote_theme: jekyll/minima
-minima:
-  skin: auto
-  social_links:
-    github: zhouh406
-    email: zhouh268@mail2.sysu.edu.cn
-  show_footer_info: true
-  show_social_links: true
-
-# 导航栏
-header_pages:
-  - about.md
-
-# 插件
-plugins:
-  - jekyll-feed
-  - jekyll-seo-tag
-  - jekyll-sitemap
-  - jekyll-gist
-  - jekyll-paginate
-
-# SEO优化
-seo:
-  type: Person
+author:
   name: zchhaa
-  description: 通信领域硕士研究生，专注于粒子群算法、天线设计、射频技术研究
-  url: https://zhouh406.github.io
-  image: /assets/profile.jpg
-  social:
-    name: zchhaa
-    links:
-      - https://github.com/zhouh406
-      - mailto:zhouh268@mail2.sysu.edu.cn
+  email: zhouh268@mail2.sysu.edu.cn
 
-# 分页设置
-paginate: 5
-paginate_path: "/page:num/"
+# Keep the existing GitHub Pages / Jekyll architecture.
+remote_theme: jekyll/minima
+plugins:
+  - jekyll-remote-theme
+  - jekyll-sitemap
 
-# 构建设置
 markdown: kramdown
 highlighter: rouge
 kramdown:
   input: GFM
   syntax_highlighter: rouge
+  auto_ids: true
+
+# Markdown-driven content collections.
+collections:
+  projects:
+    output: true
+    permalink: /projects/:name/
+  knowledge:
+    output: true
+    permalink: /knowledge/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: projects
+    values:
+      layout: project
+  - scope:
+      path: ""
+      type: knowledge
+    values:
+      layout: note
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+
+exclude:
+  - .idea
+  - .github
+  - CONTENT_GUIDE.md
+  - LICENSE
+  - README.md

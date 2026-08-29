@@ -1,0 +1,34 @@
+---
+layout: default
+---
+{% assign notes = site.knowledge | sort: 'date' | reverse %}
+{% assign categories = site.knowledge | map: 'category' | uniq | sort %}
+<div class="shell page-shell">
+  <header class="page-header page-header--knowledge">
+    <div>
+      <p class="eyebrow">Public knowledge base</p>
+      <h1>{{ page.title }}</h1>
+      <p class="page-lead">{{ page.description }}</p>
+    </div>
+    <div class="knowledge-stats" aria-label="Knowledge base statistics">
+      <strong>{{ notes.size }}</strong><span>notes</span>
+      <strong>{{ categories.size }}</strong><span>categories</span>
+    </div>
+  </header>
+
+  {% if content != '' %}<article class="prose page-intro">{{ content }}</article>{% endif %}
+
+  <nav class="knowledge-tools" aria-label="Knowledge navigation">
+    <a href="{{ '/knowledge/categories/' | relative_url }}">Categories</a>
+    <a href="{{ '/knowledge/tags/' | relative_url }}">Tags</a>
+    <a href="{{ '/archive/' | relative_url }}">Archive</a>
+    <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
+  </nav>
+
+  <section class="content-section" aria-labelledby="all-notes-title">
+    <div class="section-heading"><h2 id="all-notes-title">All Notes</h2></div>
+    <div class="note-list">
+      {% for note in notes %}{% include note-card.html note=note %}{% endfor %}
+    </div>
+  </section>
+</div>

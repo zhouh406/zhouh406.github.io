@@ -1,0 +1,18 @@
+{% assign project = include.project %}
+<article class="project-card">
+  <div class="project-card__topline">
+    {% if project.status %}<span class="status-label">{{ project.status }}</span>{% endif %}
+    {% if project.year %}<span>{{ project.year }}</span>{% endif %}
+  </div>
+  <h3><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h3>
+  <p>{{ project.summary }}</p>
+  {% if project.technologies %}
+    <ul class="tag-list" aria-label="Main technologies">
+      {% for technology in project.technologies limit: 5 %}
+        <li><span>{{ technology }}</span></li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+  <a class="text-link" href="{{ project.url | relative_url }}">View project <span aria-hidden="true">→</span></a>
+</article>
+

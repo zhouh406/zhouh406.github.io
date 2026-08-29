@@ -1,0 +1,59 @@
+---
+layout: default
+---
+{% assign profile = site.data.profile %}
+<div class="shell page-shell">
+  <header class="page-header">
+    <p class="eyebrow">Profile</p>
+    <h1>{{ page.title }}</h1>
+    <p class="page-lead">{{ page.description }}</p>
+  </header>
+
+  <div class="about-grid">
+    <article class="prose about-intro">{{ content }}</article>
+    <aside class="contact-panel" aria-label="Contact">
+      <p class="eyebrow">Contact</p>
+      <a href="mailto:{{ profile.contact.email }}">{{ profile.contact.email }}</a>
+      <a href="{{ profile.contact.github_url }}" target="_blank" rel="noopener noreferrer">GitHub · {{ profile.contact.github_label }}</a>
+    </aside>
+  </div>
+
+  <section class="content-section" aria-labelledby="education-title">
+    <div class="section-heading"><h2 id="education-title">Education</h2></div>
+    {% for item in profile.education %}
+      <article class="structured-row">
+        <div><strong>{{ item.degree }}</strong><span>{{ item.institution }}</span></div>
+        <p>{{ item.detail }}</p>
+      </article>
+    {% endfor %}
+  </section>
+
+  <section class="content-section" aria-labelledby="about-interests-title">
+    <div class="section-heading"><h2 id="about-interests-title">Research Interests</h2></div>
+    <ul class="interest-list">
+      {% for interest in profile.research_interests %}<li>{{ interest }}</li>{% endfor %}
+    </ul>
+  </section>
+
+  <section class="content-section" aria-labelledby="skills-title">
+    <div class="section-heading"><h2 id="skills-title">Technical Skills</h2></div>
+    <div class="skills-grid">
+      {% for group in site.data.skills %}
+        <article>
+          <h3>{{ group.category }}</h3>
+          <ul>{% for item in group.items %}<li>{{ item }}</li>{% endfor %}</ul>
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="content-section" aria-labelledby="timeline-title">
+    <div class="section-heading"><h2 id="timeline-title">Timeline</h2></div>
+    <ol class="timeline">
+      {% for item in profile.timeline %}
+        <li><span>{{ item.period }}</span><div><h3>{{ item.title }}</h3><p>{{ item.detail }}</p></div></li>
+      {% endfor %}
+    </ol>
+  </section>
+</div>
+

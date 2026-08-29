@@ -1,0 +1,13 @@
+- label: Home
+  url: /
+- label: About
+  url: /about/
+- label: Research
+  url: /research/
+- label: Projects
+  url: /projects/
+- label: Knowledge
+  url: /knowledge/
+- label: Archive
+  url: /archive/
+

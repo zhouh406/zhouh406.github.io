@@ -1,0 +1,45 @@
+---
+layout: default
+---
+<div class="shell detail-shell">
+  <a class="back-link" href="{{ '/projects/' | relative_url }}"><span aria-hidden="true">←</span> All projects</a>
+  <header class="detail-header">
+    <div class="detail-header__main">
+      <p class="eyebrow">Project{% if page.status %} · {{ page.status }}{% endif %}</p>
+      <h1>{{ page.title }}</h1>
+      <p class="page-lead">{{ page.summary }}</p>
+    </div>
+    {% if page.repository %}
+      <a class="button" href="{{ page.repository }}" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
+    {% endif %}
+  </header>
+
+  {% if page.image %}
+    <figure class="project-figure">
+      <img src="{{ page.image | relative_url }}" alt="{{ page.image_alt | default: page.title }}">
+      {% if page.image_caption %}<figcaption>{{ page.image_caption }}</figcaption>{% endif %}
+    </figure>
+  {% endif %}
+
+  <div class="detail-grid">
+    <article class="prose">{{ content }}</article>
+    <aside class="detail-aside">
+      {% if page.technologies %}
+        <section><h2>Main Technologies</h2><ul class="tag-list">{% for technology in page.technologies %}<li><span>{{ technology }}</span></li>{% endfor %}</ul></section>
+      {% endif %}
+      {% if page.result %}<section><h2>Result</h2><p>{{ page.result }}</p></section>{% endif %}
+      {% if page.related_notes %}
+        <section>
+          <h2>Related Notes</h2>
+          <ul class="link-list">
+            {% for note_slug in page.related_notes %}
+              {% assign related_note = site.knowledge | where: 'slug', note_slug | first %}
+              {% if related_note %}<li><a href="{{ related_note.url | relative_url }}">{{ related_note.title }}</a></li>{% endif %}
+            {% endfor %}
+          </ul>
+        </section>
+      {% endif %}
+    </aside>
+  </div>
+</div>
+

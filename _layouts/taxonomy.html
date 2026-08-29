@@ -1,0 +1,38 @@
+---
+layout: default
+---
+{% assign notes = site.knowledge | sort: 'date' | reverse %}
+<div class="shell page-shell">
+  <header class="page-header">
+    <p class="eyebrow">Knowledge index</p>
+    <h1>{{ page.title }}</h1>
+    <p class="page-lead">{{ page.description }}</p>
+  </header>
+
+  {% if page.taxonomy == 'category' %}
+    {% assign terms = site.knowledge | map: 'category' | uniq | sort %}
+  {% else %}
+    {% assign terms = site.knowledge | map: 'tags' | join: ',' | split: ',' | uniq | sort %}
+  {% endif %}
+
+  <nav class="term-index" aria-label="{{ page.title }} index">
+    {% for term in terms %}<a href="#{{ term | slugify }}">{{ term }}</a>{% endfor %}
+  </nav>
+
+  <div class="taxonomy-list">
+    {% for term in terms %}
+      <section id="{{ term | slugify }}">
+        <h2>{{ term }}</h2>
+        <ol>
+          {% for note in notes %}
+            {% if page.taxonomy == 'category' %}
+              {% if note.category == term %}<li><time datetime="{{ note.date | date_to_xmlschema }}">{{ note.date | date: '%Y-%m-%d' }}</time><a href="{{ note.url | relative_url }}">{{ note.title }}</a></li>{% endif %}
+            {% elsif note.tags contains term %}
+              <li><time datetime="{{ note.date | date_to_xmlschema }}">{{ note.date | date: '%Y-%m-%d' }}</time><a href="{{ note.url | relative_url }}">{{ note.title }}</a></li>
+            {% endif %}
+          {% endfor %}
+        </ol>
+      </section>
+    {% endfor %}
+  </div>
+</div>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="{{ site.lang | default: 'zh-CN' }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% assign meta_description = page.description | default: page.summary | default: site.description %}
+    {% if page.url == '/' %}
+      {% assign meta_title = site.title %}
+    {% else %}
+      {% capture meta_title %}{{ page.title }} · {{ site.title }}{% endcapture %}
+    {% endif %}
+    <title>{{ meta_title | strip | escape }}</title>
+    <meta name="description" content="{{ meta_description | strip_html | normalize_whitespace | escape }}">
+    <link rel="canonical" href="{{ page.url | absolute_url }}">
+    <meta property="og:type" content="{% if page.collection == 'knowledge' %}article{% else %}website{% endif %}">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:site_name" content="{{ site.title | escape }}">
+    <meta property="og:title" content="{{ meta_title | strip | escape }}">
+    <meta property="og:description" content="{{ meta_description | strip_html | normalize_whitespace | escape }}">
+    <meta property="og:url" content="{{ page.url | absolute_url }}">
+    {% if page.image %}<meta property="og:image" content="{{ page.image | absolute_url }}">{% endif %}
+    <meta name="twitter:card" content="summary">
+    <meta name="theme-color" content="#f6f7f4">
+    <link rel="icon" href="{{ '/assets/images/favicon.svg' | relative_url }}" type="image/svg+xml">
+    <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="{{ '/feed.xml' | absolute_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+    <script src="{{ '/assets/js/site.js' | relative_url }}" defer></script>
+    {% if page.url == '/' %}
+      <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Person",
+          "name": {{ site.data.profile.name | jsonify }},
+          "url": {{ site.url | jsonify }},
+          "email": {{ site.data.profile.contact.email | jsonify }},
+          "sameAs": [{{ site.data.profile.contact.github_url | jsonify }}]
+        }
+      </script>
+    {% endif %}
+  </head>
+  <body class="layout-{{ page.layout }}">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    {% include site-header.html %}
+    <main id="main-content">{{ content }}</main>
+    {% include site-footer.html %}
+  </body>
+</html>
+

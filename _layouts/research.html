@@ -1,0 +1,53 @@
+---
+layout: default
+---
+<div class="shell page-shell">
+  <header class="page-header">
+    <p class="eyebrow">Research map</p>
+    <h1>{{ page.title }}</h1>
+    <p class="page-lead">{{ page.description }}</p>
+  </header>
+  {% if content != '' %}<article class="prose page-intro">{{ content }}</article>{% endif %}
+
+  <div class="research-list">
+    {% for area in site.data.research %}
+      <section class="research-area" id="{{ area.key }}">
+        <div class="research-area__heading">
+          <span class="research-area__index">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+          <div><h2>{{ area.title }}</h2><p>{{ area.summary }}</p></div>
+        </div>
+        <div class="research-area__body">
+          <div><h3>Background</h3><p>{{ area.background }}</p></div>
+          <div><h3>Current Focus</h3><p>{{ area.current_focus }}</p></div>
+          <div>
+            <h3>Related Projects</h3>
+            <ul class="link-list">
+              {% assign project_count = 0 %}
+              {% for project in site.projects %}
+                {% if project.research contains area.key %}
+                  {% assign project_count = project_count | plus: 1 %}
+                  <li><a href="{{ project.url | relative_url }}">{{ project.title }}</a></li>
+                {% endif %}
+              {% endfor %}
+              {% if project_count == 0 %}<li class="muted">In progress</li>{% endif %}
+            </ul>
+          </div>
+          <div>
+            <h3>Related Notes</h3>
+            <ul class="link-list">
+              {% assign note_count = 0 %}
+              {% for note in site.knowledge %}
+                {% if note.research contains area.key %}
+                  {% assign note_count = note_count | plus: 1 %}
+                  <li><a href="{{ note.url | relative_url }}">{{ note.title }}</a></li>
+                {% endif %}
+              {% endfor %}
+              {% if note_count == 0 %}<li class="muted">Notes will be added over time</li>{% endif %}
+            </ul>
+          </div>
+        </div>
+      </section>
+    {% endfor %}
+  </div>
+</div>
+

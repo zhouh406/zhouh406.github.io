@@ -1,0 +1,35 @@
+- key: antennas
+  title: Antennas
+  summary: 从阵列、匹配和辐射性能出发，研究可验证、可优化的天线设计方法。
+  background: 天线性能受到几何结构、材料、馈电方式和工作环境的共同影响，设计过程需要理论分析与全波仿真结合。
+  current_focus: 相控阵阵元排布、相位加权、旁瓣抑制与宽带性能评估。
+
+- key: rf-systems
+  title: RF Systems
+  summary: 关注从器件与电路指标到系统级性能之间的连接。
+  background: 射频系统设计需要同时考虑匹配、损耗、带宽、稳定性以及各模块之间的约束传递。
+  current_focus: 参数扫描、性能指标提取与可复用的仿真分析流程。
+
+- key: electromagnetic-simulation
+  title: Electromagnetic Simulation
+  summary: 使用数值仿真理解复杂电磁结构，并建立可重复的验证流程。
+  background: 全波仿真能够补充解析模型，但模型设置、网格、边界条件与结果解释都会影响可信度。
+  current_focus: 参数化建模、收敛检查、结果后处理和仿真可重复性。
+
+- key: hfss-pyaedt
+  title: HFSS / PyAEDT
+  summary: 用 Python 连接 HFSS 建模、求解、数据提取和后处理环节。
+  background: 手动操作适合探索，但在大量参数组合、重复验证和优化迭代中容易产生时间与一致性成本。
+  current_focus: PyAEDT API、批量任务、异常处理和自动化结果评估。
+
+- key: ai-em
+  title: AI for Electromagnetic Design
+  summary: 探索优化算法与机器学习在电磁设计空间搜索中的工程价值。
+  background: 电磁设计通常具有高维、非线性和单次评估成本高等特点，需要在精度、样本成本与可解释性之间平衡。
+  current_focus: 粒子群算法、多目标评价、代理模型与可制造性约束。
+
+- key: engineering-automation
+  title: Engineering Automation
+  summary: 将重复工程步骤组织成可追踪、可复现、可扩展的工作流。
+  background: 自动化的价值不仅是运行更快，还包括减少手工错误、保存过程数据并让结果更容易复核。
+  current_focus: 脚本化流程、任务管理、日志、数据结构与结果可视化。

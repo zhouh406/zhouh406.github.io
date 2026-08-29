@@ -1,0 +1,59 @@
+---
+layout: default
+---
+{% assign profile = site.data.profile %}
+<div class="shell home-shell">
+  <section class="hero" aria-labelledby="home-title">
+    <p class="eyebrow">{{ profile.role }}</p>
+    <h1 id="home-title">{{ profile.name }}</h1>
+    <p class="hero__tagline">{{ profile.tagline }}</p>
+    <p class="hero__intro">{{ profile.intro }}</p>
+    <div class="button-row">
+      <a class="button button--primary" href="{{ profile.contact.github_url }}" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a class="button" href="mailto:{{ profile.contact.email }}">Email</a>
+    </div>
+  </section>
+
+  <section class="home-section" aria-labelledby="interests-title">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">What I work on</p>
+        <h2 id="interests-title">Research Interests</h2>
+      </div>
+      <a class="text-link" href="{{ '/research/' | relative_url }}">Explore research <span aria-hidden="true">→</span></a>
+    </div>
+    <p class="section-intro">{{ profile.focus }}</p>
+    <ul class="interest-list">
+      {% for interest in profile.research_interests %}<li>{{ interest }}</li>{% endfor %}
+    </ul>
+  </section>
+
+  <section class="home-section" aria-labelledby="selected-projects-title">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">What I have built</p>
+        <h2 id="selected-projects-title">Selected Projects</h2>
+      </div>
+      <a class="text-link" href="{{ '/projects/' | relative_url }}">All projects <span aria-hidden="true">→</span></a>
+    </div>
+    {% assign featured_projects = site.projects | where: 'featured', true | sort: 'order' %}
+    <div class="card-grid card-grid--projects">
+      {% for project in featured_projects limit: 3 %}{% include project-card.html project=project %}{% endfor %}
+    </div>
+  </section>
+
+  <section class="home-section" aria-labelledby="latest-notes-title">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">What I am learning</p>
+        <h2 id="latest-notes-title">Latest Notes</h2>
+      </div>
+      <a class="text-link" href="{{ '/knowledge/' | relative_url }}">Open knowledge base <span aria-hidden="true">→</span></a>
+    </div>
+    {% assign latest_notes = site.knowledge | sort: 'date' | reverse %}
+    <div class="card-grid">
+      {% for note in latest_notes limit: 3 %}{% include note-card.html note=note %}{% endfor %}
+    </div>
+  </section>
+</div>
+
